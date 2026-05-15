@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoScout - Modifica Carta</title>
+    <style>
+        /* CONFIGURAZIONE VARIABILI */
+        :root {
+            --primary-teal: #17b1c1;
+            --dark-text: #1a1a1a;
+            --white: #ffffff;
+            --gray-label: #777;
+            --success-green: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=2000') no-repeat center center fixed;
+            background-size: cover;
+            padding-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* NAVBAR (Logo a destra, Link a sinistra) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-teal); }
+
+        .logo {
+            font-size: 1.4rem;
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 300;
+        }
+
+        .logo span { font-weight: 700; }
+
+        /* CONTENITORE CARD */
+        .card-container {
+            background: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 300;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--dark-text);
+        }
+
+        /* ANTEPRIMA CARTA */
+        .visual-card-preview {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .visual-card-preview img {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .visual-card-preview img:hover {
+            transform: translateY(-5px) rotate(1deg);
+        }
+
+        /* FORM */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gray-label);
+            text-transform: uppercase;
+            margin-left: 15px;
+        }
+
+        input {
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        input:focus {
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 4px rgba(23, 177, 193, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* BOTTONI */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 16px;
+            border-radius: 35px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-teal);
+            color: white;
+        }
+
+        .reset {
+            background-color: #eee;
+            color: #666;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin-bottom: 25px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0 20px; }
+            .form-row, .button-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="cercaauto.html">Cerca</a>
+            <a href="modificaauto.html">Veicoli</a>
+            <a href="profilo.html">Profilo</a>
+        </div>
+        <a href="index.html" class="logo">auto<span>scout</span></a>
+    </nav>
+
+    <div class="card-container">
+        <h2>Metodo di Pagamento</h2>
+        
+        <form action="modificacarta.php" method="POST">
+            
+            <div class="form-group">
+                <label for="codicefiscale">Codice Fiscale Utente</label>
+                <input type="text" id="codicefiscale" name="codicefiscale" 
+                       placeholder="Es. RSSMRA80A01H501W" required>
+            </div>
+
+            <hr>
+
+            <div class="visual-card-preview">
+                <img src="./images/carta.png" alt="Anteprima Carta" 
+                     onerror="this.src='https://placehold.co/300x180/17b1c1/white?text=Credit+Card'" 
+                     style="width: 100%; max-width: 300px;">
+            </div>
+
+            <div class="form-group">
+                <label for="numero">Numero della Carta</label>
+                <input type="text" id="numero" name="numero" 
+                       placeholder="0000 0000 0000 0000" 
+                       pattern="\d{16}" title="Inserire 16 cifre">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label for="scadenza">Scadenza</label>
+                    <input type="text" id="scadenza" name="scadenza" 
+                           placeholder="MM/AA" pattern="(0[1-9]|1[0-2])\/[2-9][0-9]">
+                </div>
+
+                <div class="form-group" style="flex: 1;">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" name="cvc" 
+                           placeholder="123" maxlength="3" pattern="\d{3}">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-primary">Salva Carta</button>
+                <button type="reset" class="reset">Annulla</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
